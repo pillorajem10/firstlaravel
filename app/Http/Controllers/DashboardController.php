@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -21,8 +23,13 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('dashboard');
-    }
+     public function index()
+     {
+         $user_id = auth()->user()->id;
+         $user = User::find($user_id);
+
+         // Log::info('User logged in', ['user' => $user->posts]);
+
+         return view('dashboard')->with('posts', $user->posts);
+     }
 }

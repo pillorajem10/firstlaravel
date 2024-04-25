@@ -17,7 +17,7 @@
         <label for="body">Body:</label>
         <textarea class="form-control" id="body" name="body" rows="5"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
   </div>
 @endsection

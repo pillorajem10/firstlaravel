@@ -63,6 +63,7 @@ class PostsController extends Controller
         // Create Post
         $post = new Post;
         $post->id = $randomId;
+        $post->user_id = auth()->user()->id;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
@@ -76,6 +77,11 @@ class PostsController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
+
+        if (!isset($post)){
+          return redirect('/posts')->with('error', 'No Post Found');
+        }
+
         return view('posts.show')->with('post', $post);
     }
 
@@ -85,6 +91,11 @@ class PostsController extends Controller
     public function edit(string $id)
     {
         $post = Post::find($id);
+
+        if (!isset($post)){
+          return redirect('/posts')->with('error', 'No Post Found');
+        }
+
         return view('posts.edit')->with('post', $post);
     }
 

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            <img src="{{ asset('snapShopLogo.png') }}" alt="Logo" width="110" height="55">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -10,10 +10,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
               <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
               <li class="nav-item"><a class="nav-link" href="/posts">Posts</a></li>
+              @auth
+                  @if(auth()->user()->role == 2)
+                      <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
+                  @endif
+              @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -44,6 +48,7 @@
                                 {{ __('Logout') }}
                             </a>
                             <a class="dropdown-item" href="/posts/create">Create Post</a>
+                            <a class="dropdown-item" href="/dashboard">Dashboard</a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
