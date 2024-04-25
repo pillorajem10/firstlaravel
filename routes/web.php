@@ -22,6 +22,7 @@ Route::get('/services', 'App\Http\Controllers\PagesController@services');
 
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 Route::resource('categories', 'App\Http\Controllers\CategoryController');
+Route::resource('products', 'App\Http\Controllers\ProductsController');
 
 Auth::routes();
 

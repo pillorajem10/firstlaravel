@@ -20,4 +20,8 @@ class Category extends Model
 
     // fillables
     protected $fillable = ['name'];
+
+    public function products() {
+        return $this->hasMany(Product::class, 'category_id');
+    }
 }

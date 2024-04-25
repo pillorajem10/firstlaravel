@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -28,8 +29,10 @@ class DashboardController extends Controller
          $user_id = auth()->user()->id;
          $user = User::find($user_id);
 
-         // Log::info('User logged in', ['user' => $user->posts]);
-
-         return view('dashboard')->with('posts', $user->posts);
+         if (Auth::check() && Auth::user()->role === 1) {
+           return view('sellerDashboard')->with('products', $user->products);
+         } else {
+           return view('dashboard')->with('posts', $user->posts);
+         }
      }
 }
