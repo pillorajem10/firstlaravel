@@ -11,7 +11,7 @@
 
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" />
+        <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" />
       </div>
       <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>

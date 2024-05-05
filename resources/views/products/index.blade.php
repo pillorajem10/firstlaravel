@@ -4,6 +4,26 @@
   <div class="container">
     <h1 class="text-center my-4">Discover Our Products</h1>
 
+    <form action="{{ route('products.index') }}" method="GET" class="mb-4">
+        <div class="input-group mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Search by name" value="{{ request()->input('name') }}">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <select class="form-control" name="category">
+                <option value="">All Categories</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request()->input('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                @endforeach
+            </select>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-primary">Filter</button>
+            </div>
+        </div>
+    </form>
+
     <div class="row row-cols-1 row-cols-md-3">
       @forelse($products as $product)
         <div class="col mb-4">

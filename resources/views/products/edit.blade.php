@@ -2,22 +2,46 @@
 
 @section('content')
   <div class="container">
-    <h1>Edit Post</h1>
-    <p>You may edit your post here, make sure all fields are filled.</p>
+    <h1>Edit Product</h1>
+    <p>You may edit your product here, make sure all fields are filled.</p>
 
-    <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}">
+    <form method="POST" action="{{ route('products.update', ['product' => $product->id]) }}" enctype="multipart/form-data">
       @csrf
-      <input type="hidden" name="_method" value="PUT">
+      @method('PUT') <!-- Use PUT method for updating -->
 
       <div class="form-group">
-        <label for="title">Title:</label>
-        <input type="text" class="form-control" id="title" name="title" />
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ $product->name }}" />
       </div>
       <div class="form-group">
-        <label for="body">Body:</label>
-        <textarea class="form-control" id="body" name="body" rows="5"></textarea>
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description" rows="5">{{ $product->description }}</textarea>
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="text" class="form-control" id="price" name="price" value="{{ $product->price }}" />
+      </div>
+      <div class="form-group">
+        <label for="stocks">Stocks:</label>
+        <input type="text" class="form-control" id="stocks" name="stocks" value="{{ $product->stocks }}" />
+      </div>
+      <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" class="form-control" id="image" name="image" value="{{ $product->image }}" />
+        @if($product->image)
+          <img src="/storage/images/{{$product->image}}" alt="{{$product->name}}" style="max-width: 200px; margin-top: 10px;" />
+        @endif
+      </div>
+      <div class="form-group">
+          <label for="category_id">Category:</label>
+          <select class="form-control" id="category_id" name="category_id">
+              <option value="">Select category</option>
+              @foreach($categories as $category)
+                  <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+              @endforeach
+          </select>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
   </div>
 @endsection

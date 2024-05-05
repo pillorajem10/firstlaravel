@@ -22,7 +22,17 @@
                                         <img class="card-img-top w-100 h-100 object-cover" src="/storage/images/{{$product->image}}" alt="{{$product->name}}">
                                         <div class="card-body d-flex flex-column justify-content-end">
                                             <h5 class="card-title">{{ $product->name }}</h5>
-                                            <p class="card-text">₱{{ $product->price }}</p>
+                                            <div class="card-text">₱{{ $product->price }}</div>
+                                            <div class="card-text">QTY: {{ $product->stocks }}</div>
+                                            <!--<a href="/products/{{$product->id}}/edit" style="display:inline;" class="btn mb-2 btn-outline-primary">Update</a> -->
+                                            <div>
+                                              <a href="/products/{{$product->id}}/edit" style="display:inline;" class="btn mb-2 btn-outline-primary">Update</a>
+                                              <form method="POST" action="{{ route('products.destroy', ['product' => $product->id]) }}" style="display:inline; margin-top: .5rem;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                              </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
