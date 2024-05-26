@@ -19,7 +19,7 @@
                             @foreach ($products as $product)
                                 <div class="col-md-4 mb-4">
                                     <div class="card h-100 shadow bg-white">
-                                        <img class="card-img-top w-100 h-100 object-cover" src="/storage/images/{{$product->image}}" alt="{{$product->name}}">
+                                        <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/images/' . $product->image) }}" alt="{{$product->name}}">
                                         <div class="card-body d-flex flex-column justify-content-end">
                                             <h5 class="card-title">{{ $product->name }}</h5>
                                             <div class="card-text">₱{{ $product->price }}</div>

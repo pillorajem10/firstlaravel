@@ -29,7 +29,7 @@
         <div class="col mb-4">
           <div class="card h-100 border-0 shadow bg-white">
             <div>
-              <img class="card-img-top w-100 h-100 object-cover" src="/storage/images/{{$product->image}}" alt="{{$product->name}}">
+              <img class="card-img-top w-100 h-100 object-cover" src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}">
             </div>
             <div class="card-body d-flex flex-column justify-content-end">
               <div>

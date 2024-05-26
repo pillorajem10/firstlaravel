@@ -46,32 +46,33 @@
                             <a class="nav-link fs-5" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->fname }} {{ Auth::user()->lname }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                    @else
+                        <li class="nav-item dropdown d-flex align-items-center">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->fname }} {{ Auth::user()->lname }}
                             </a>
-                            <a class="dropdown-item" href="/posts/create">Create Post</a>
-                            <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                            @auth
-                                @if(auth()->user()->role == 1)
-                                    <a class="dropdown-item" href="/products/create">Add Product</a>
-                                @endif
-                            @endauth
+                            <a href="/carts" class="ml-auto"><img src="{{ asset('cartSvgW.svg') }}" alt="Cart Icon" width="30" height="30"></a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <a class="dropdown-item" href="/posts/create">Create Post</a>
+                                <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                @auth
+                                    @if(auth()->user()->role == 1)
+                                        <a class="dropdown-item" href="/products/create">Add Product</a>
+                                    @endif
+                                @endauth
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
             </ul>
         </div>
     </div>

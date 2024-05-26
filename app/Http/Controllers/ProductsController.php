@@ -75,6 +75,7 @@ class ProductsController extends Controller
             }],
             'price' => ['required', 'numeric'],
             'stocks' => ['required', 'numeric'],
+            'category_id' => ['required', 'not_in:null', 'not_in: '],
             'image' => ['required', 'image', 'max:1999'],
         ]);
 
@@ -116,7 +117,7 @@ class ProductsController extends Controller
         $product->image = $fileNameToStore;
         $product->save();
 
-        return redirect('/products')->with('success', 'Product Created');
+        return redirect('/dashboard')->with('success', 'Product Updated');
     }
 
     /**
@@ -177,6 +178,7 @@ class ProductsController extends Controller
             }],
             'price' => ['required', 'numeric'],
             'stocks' => ['required', 'numeric'],
+            'category_id' => ['required', 'not_in:null', 'not_in: '],
             // 'image' => ['required', 'image', 'max:1999'],
         ]);
 
